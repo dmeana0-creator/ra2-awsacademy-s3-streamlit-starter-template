@@ -5,7 +5,7 @@ Este repositorio es la **plantilla oficial** para la *Tarea Evaluable RA2* del c
 ## Objetivo
 Implementar un **pipeline sencillo**:
 1. Generar/obtener datos IoT (JSON) y **subirlos a un bucket S3 privado**.
-2. Desplegar una app **Streamlit** en una **EC2 Ubuntu 22.04** que **lee el JSON desde S3**.
+2. Desplegar una app **Streamlit** en una **EC2 Ubuntu 24.04** que **lee el JSON desde S3**.
 3. Construir un dashboard con:
    - filtros (estado del sensor + rango de temperatura),
    - tabla filtrada,
@@ -40,7 +40,7 @@ streamlit run app/dashboard.py
 
 ---
 
-## Quickstart (EC2 Ubuntu 22.04 en AWS Academy)
+## Quickstart (EC2 Ubuntu 24.04 en AWS Academy)
 En la EC2:
 
 ```bash
