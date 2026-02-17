@@ -35,63 +35,79 @@ with st.sidebar:
 
 @st.cache_data(show_spinner=False)
 def load_data(bucket: str, key: str, region: str) -> pd.DataFrame:
-    """Carga datos desde S3 y devuelve un DataFrame listo para usar.
-
-    TODO (obligatorio):
-    1) Leer JSON desde S3 con `load_json_from_s3(bucket, key, region)`
-    2) Convertir a DataFrame con `to_dataframe(...)`
-    3) Asegurar columnas con `ensure_columns(df)`
-    4) Parsear timestamp con `parse_time(df)`
-
-    NOTA: No incluyas credenciales en el código. Usa IAM Role (Variante A) o `aws configure` (Variante B).
-    """
-    # --- TODO: implementa ---
-    raise NotImplementedError("Implementa load_data()")
+    """Carga datos desde S3 y devuelve un DataFrame listo para usar."""
+    # 1) Leer JSON desde S3
+    raw_data = load_json_from_s3(bucket, key, region)
+    
+    # 2) Convertir a DataFrame
+    df = to_dataframe(raw_data)
+    
+    # 3) Asegurar columnas
+    df = ensure_columns(df)
+    
+    # 4) Parsear timestamp
+    df = parse_time(df)
+    
+    return df
 
 
 def apply_filters(df: pd.DataFrame, sensor_state: str, temp_min: float, temp_max: float) -> pd.DataFrame:
-    """Aplica filtros del sidebar.
-
-    TODO (obligatorio):
-    - Si sensor_state != '(todos)', filtra por sensor_state (case-insensitive).
-    - Filtra por temperatura en el rango [temp_min, temp_max].
-    """
-    # --- TODO: implementa ---
-    raise NotImplementedError("Implementa apply_filters()")
+    """Aplica filtros del sidebar."""
+    fdf = df.copy()
+    
+    # Filtro por estado del sensor
+    if sensor_state != "(todos)":
+        # Usamos case=False para que sea case-insensitive como pide el TODO
+        fdf = fdf[fdf['sensor_state'].str.lower() == sensor_state.lower()]
+        
+    # Filtro por rango de temperatura
+    fdf = fdf[(fdf['temperature_c'] >= temp_min) & (fdf['temperature_c'] <= temp_max)]
+    
+    return fdf
 
 
 def plot_temperature(df: pd.DataFrame):
-    """Devuelve una figura Plotly de línea: temperatura vs tiempo.
-
-    TODO (obligatorio):
-    - Eje X: timestamp
-    - Eje Y: temperature_c
-    - Color: sensor_id (recomendado)
-    """
-    # --- TODO: implementa ---
-    raise NotImplementedError("Implementa plot_temperature()")
+    """Devuelve una figura Plotly de línea: temperatura vs tiempo."""
+    # Ordenamos por tiempo para que la línea se dibuje correctamente
+    df_sorted = df.sort_values("timestamp")
+    
+    fig = px.line(
+        df_sorted, 
+        x="timestamp", 
+        y="temperature_c", 
+        color="sensor_id",
+        title="Evolución de la Temperatura",
+        labels={"timestamp": "Fecha y Hora", "temperature_c": "Temperatura (°C)", "sensor_id": "Sensor"},
+        markers=True
+    )
+    return fig
 
 
 def plot_co2(df: pd.DataFrame):
-    """Devuelve una figura Plotly de barras: CO2 agregado por sensor.
-
-    TODO (obligatorio):
-    - Agrupa por sensor_id
-    - Métrica: media (recomendado) o suma de co2_ppm
-    """
-    # --- TODO: implementa ---
-    raise NotImplementedError("Implementa plot_co2()")
+    """Devuelve una figura Plotly de barras: CO2 agregado por sensor."""
+    # Agrupamos por sensor_id y calculamos la media de CO2
+    co2_agregado = df.groupby("sensor_id")["co2_ppm"].mean().reset_index()
+    
+    fig = px.bar(
+        co2_agregado, 
+        x="sensor_id", 
+        y="co2_ppm", 
+        color="sensor_id",
+        title="Niveles medios de CO₂ por Sensor",
+        labels={"sensor_id": "Sensor", "co2_ppm": "CO₂ (ppm Media)"}
+    )
+    return fig
 
 
 def render_map(df: pd.DataFrame):
-    """Muestra el mapa con st.map() usando lat/lon.
-
-    TODO (obligatorio):
-    - Quita filas sin lat/lon
-    - Llama a st.map(...)
-    """
-    # --- TODO: implementa ---
-    raise NotImplementedError("Implementa render_map()")
+    """Muestra el mapa con st.map() usando lat/lon."""
+    # Quitamos filas que no tengan latitud o longitud
+    df_map = df.dropna(subset=['lat', 'lon'])
+    
+    if not df_map.empty:
+        st.map(df_map, latitude='lat', longitude='lon', use_container_width=True)
+    else:
+        st.warning("No hay datos con coordenadas geográficas (lat/lon) válidas para mostrar en el mapa.")
 
 
 # --- Control recarga cache ---
@@ -106,10 +122,6 @@ if not s3_bucket or not s3_key or not aws_region:
 try:
     with st.spinner("Cargando JSON desde S3..."):
         df = load_data(s3_bucket, s3_key, aws_region)
-except NotImplementedError as e:
-    st.error("Esta es la plantilla starter: aún faltan TODOs por implementar.")
-    st.exception(e)
-    st.stop()
 except Exception as e:
     st.error("No se pudo cargar desde S3. Revisa permisos, región y ruta del objeto.")
     st.exception(e)
@@ -118,8 +130,8 @@ except Exception as e:
 # --- Filtrado ---
 try:
     fdf = apply_filters(df, sensor_state, temp_min, temp_max)
-except NotImplementedError as e:
-    st.error("Faltan TODOs por implementar en apply_filters().")
+except Exception as e:
+    st.error("Error al aplicar filtros.")
     st.exception(e)
     st.stop()
 
@@ -143,30 +155,21 @@ left, right = st.columns(2)
 with left:
     st.subheader("Temperatura en el tiempo")
     if len(fdf):
-        try:
-            fig = plot_temperature(fdf)
-            st.plotly_chart(fig, use_container_width=True)
-        except NotImplementedError as e:
-            st.info("Implementa plot_temperature() para mostrar esta gráfica.")
+        fig = plot_temperature(fdf)
+        st.plotly_chart(fig, use_container_width=True)
     else:
         st.info("Sin datos con el filtro actual.")
 
 with right:
     st.subheader("CO₂ por sensor (agregado)")
     if len(fdf):
-        try:
-            fig2 = plot_co2(fdf)
-            st.plotly_chart(fig2, use_container_width=True)
-        except NotImplementedError as e:
-            st.info("Implementa plot_co2() para mostrar esta gráfica.")
+        fig2 = plot_co2(fdf)
+        st.plotly_chart(fig2, use_container_width=True)
     else:
         st.info("Sin datos con el filtro actual.")
 
 st.subheader("Mapa de sensores")
 if len(fdf):
-    try:
-        render_map(fdf)
-    except NotImplementedError:
-        st.info("Implementa render_map() para mostrar el mapa.")
+    render_map(fdf)
 else:
     st.info("Sin datos con el filtro actual.")
