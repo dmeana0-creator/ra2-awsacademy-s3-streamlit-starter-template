@@ -30,7 +30,7 @@ with st.sidebar:
     temp_min, temp_max = st.slider("Rango temperatura (°C)", -20.0, 80.0, (0.0, 40.0), 0.5)
 
     st.divider()
-    reload_btn = st.button("🔄 Recargar datos", type="primary")
+    reload_btn = st.button("Recargar datos", type="primary")
 
 
 @st.cache_data(show_spinner=False)
