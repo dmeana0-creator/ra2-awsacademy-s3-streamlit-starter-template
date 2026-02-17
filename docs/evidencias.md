@@ -47,8 +47,8 @@
 - [x] Captura del Security Group con puerto 8501 abierto (según reglas del lab)
 ![Captura del Security Group con puerto 8501 abierto](../img/grupo_seguridad.png)
 
-- [ ] Salida de `ssh` conectando (sin mostrar claves)
-![Captura Salida de `ssh` conectando (sin mostrar claves)]()
+- [x] Salida de `ssh` conectando (sin mostrar claves)
+![Captura Salida de `ssh` conectando (sin mostrar claves)](../img/conexión_ssh.png)
 
 
 ---
@@ -61,17 +61,18 @@ aws sts get-caller-identity
 aws s3 ls s3://iabd03-tarea-ra2/data/sensores/
 ```
 
-- [ ] Captura/salida de ambos comandos
-![Captura salida de comandos aws]()
+- [x] Captura/salida de ambos comandos
+![Captura salida de comandos aws](../img/comandos_aws.png)
 
 ---
 
 ## 5) Streamlit en EC2
-- [ ] Captura de `streamlit hello` funcionando (o `python -c "import streamlit"`)
-![Captura streamlit hello funcionando]()
+- [x] Captura de `streamlit hello` funcionando (o `python -c "import streamlit"`)
+![Captura 1 streamlit hello funcionando](../img/hello_captura_1.png)
+![Captura 2 streamlit hello funcionando](../img/hello_captura_2.png)
 
-- [ ] Captura de instalación de dependencias (`pip install -r requirements.txt`)
-![Captura instalación de dependencias]()
+- [x] Captura de instalación de dependencias (`pip install -r requirements.txt`)
+![Captura instalación de dependencias](../img/dependencias_instaladas.png)
 
 ---
 
