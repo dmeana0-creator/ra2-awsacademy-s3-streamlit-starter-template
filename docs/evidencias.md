@@ -30,8 +30,10 @@
 
 ## 2) Notebook / Script de subida
 - [x] Captura de la ejecución del notebook/script subiendo a S3
-![Captura 1 del notebook de subida a S3](../img/notebook_celda_1.png)
-![Captura 2 del notebook de subida a S3](../img/notebook_celda_2.png)
+![Captura 1 del notebook de subida a S3](../img/notebook_captura_1.png)
+![Captura 2 del notebook de subida a S3](../img/notebook_captura_2.png)
+![Captura 3 del notebook de subida a S3](../img/notebook_captura_3.png)
+
 
 
 - [x] Enlace o ruta del archivo en el repo (`notebooks/...`): `notebooks/ingesta_json_S3.ipynb`
@@ -79,38 +81,41 @@ aws s3 ls s3://iabd03-tarea-ra2/data/sensores/
 ## 6) Dashboard (funcionalidad)
 Incluye capturas donde se vea:
 
-- [ ] Filtro por `sensor_state`
-![Captura filtro por sensor_state]()
+- [x] Filtro por `sensor_state`
+![Captura filtro por sensor_state](../img/filtro_estado_sensor.png)
+![Captura filtro por sensor_state funcionando](../img/filtro_estado_sensor_funcionando.png)
 
-- [ ] Slider de temperatura
-![Captura slider de temperatura]()
+- [x] Slider de temperatura
+![Captura slider de temperatura](../img/slider_temperatura.png)
 
-- [ ] Tabla filtrada
-![Captura tabla filtrada]()
+- [x] Tabla filtrada
+![Captura tabla filtrada](../img/tabla_filtrada.png)
 
 - [ ] Gráfica línea (temperatura vs tiempo)
-![Captura gráfica línea temperatura vs tiempo]()
+![Captura gráfica línea temperatura vs tiempo](../img/grafica_linea_temperatura_vs_tiempo.png)
+![Captura gráfica línea temperatura vs tiempo zoom](../img/grafica_linea_temperatura_vs_tiempo_zoom.png)
 
 - [ ] Gráfica barras (CO₂ por sensor)
-![Captura gráfica barras (CO₂ por sensor)]()
+![Captura gráfica barras (CO₂ por sensor)](../img/grafica_barras_co2.png)
 
 - [ ] Mapa con sensores
-![Captura mapa con sensores]()
+![Captura mapa con sensores](../img/mapa_sensores.png)
 
 ---
 
 ## 7) Despliegue final
-- [ ] Comando usado para arrancar en segundo plano (ej. `nohup` o script): 
+- [x] Script usado para arrancar en segundo plano (ej. `nohup` o script):
+![Captura del script nohup](../img/script_nohup.png)
 
-- [ ] Captura del log (`tail -n 50 streamlit.log` o similar)
-![Captura del log]()
+- [x] Captura del log (`tail -n 50 streamlit.log` o similar)
+![Captura del log](../img/streamlit_log.png)
 
-- [ ] URL final: 
+- [x] URL final: `http://IP_PUBLICA_EC2:8501`, en la captura que he hecho `http://3.80.28.35:8501/`
 
 **URL:** `http://IP_PUBLICA_EC2:8501`
 
-- [ ] Captura en navegador accediendo a la URL
-![Captura navegador accediendo a la URL]()
+- [x] Captura en navegador accediendo a la URL
+![Captura navegador accediendo a la URL](../img/navegador_accediendo.png)
 
 ---
 
