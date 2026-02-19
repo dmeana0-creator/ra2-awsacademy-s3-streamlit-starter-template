@@ -21,7 +21,7 @@ El proyecto implementa una **arquitectura de datos IoT** orientada a la generaci
 ra2-awsacademy-s3-streamlit-starter-template/
 ├── app/                                  # Código fuente de la aplicación web
 │   ├── services/                         # Módulos auxiliares de conexión y procesado
-│   │   ├── preprocessing.py              # Limpieza, conversión de fechas y estructuración con Pandas
+│   │   ├── preprocessing.py              # Limpieza, conversión de fechas y estructuración
 │   │   └── s3_loader.py                  # Conexión y descarga del archivo JSON desde el bucket S3 privado
 │   └── dashboard.py                      # Script principal de la interfaz interactiva de Streamlit
 ├── docs/                                 # Documentación original y evidencias del proyecto
@@ -33,7 +33,7 @@ ra2-awsacademy-s3-streamlit-starter-template/
 │   └── rubric.md                         # Criterios de evaluación
 ├── img/                                  # Directorio destinado a almacenar las capturas de evidencia
 ├── notebooks/                            # Entorno para la creación e ingesta de datos sintéticos
-│   ├── ingesta_json_S3.ipynb             # Notebook con Faker para simular métricas IoT y subirlas a S3
+│   ├── ingesta_json_S3.ipynb             # Notebook para simular métricas IoT y subirlas a S3
 │   └── README.md                         # Notas o instrucciones específicas de la ingesta
 ├── scripts/                              # Automatización y despliegue en la instancia EC2
 │   ├── ec2_setup.sh                      # Script de configuración inicial para el entorno Ubuntu
