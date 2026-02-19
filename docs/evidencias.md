@@ -91,14 +91,14 @@ Incluye capturas donde se vea:
 - [x] Tabla filtrada
 ![Captura tabla filtrada](../img/tabla_filtrada.png)
 
-- [ ] Gráfica línea (temperatura vs tiempo)
+- [x] Gráfica línea (temperatura vs tiempo)
 ![Captura gráfica línea temperatura vs tiempo](../img/grafica_linea_temperatura_vs_tiempo.png)
 ![Captura gráfica línea temperatura vs tiempo zoom](../img/grafica_linea_temperatura_vs_tiempo_zoom.png)
 
-- [ ] Gráfica barras (CO₂ por sensor)
+- [x] Gráfica barras (CO₂ por sensor)
 ![Captura gráfica barras (CO₂ por sensor)](../img/grafica_barras_co2.png)
 
-- [ ] Mapa con sensores
+- [x] Mapa con sensores
 ![Captura mapa con sensores](../img/mapa_sensores.png)
 
 ---
