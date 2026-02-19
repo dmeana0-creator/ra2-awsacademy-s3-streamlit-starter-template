@@ -63,10 +63,7 @@ Se ha creado un notebook en Python (ubicado en `notebooks/`) que utiliza la libr
 * Por eficiencia, el notebook elimina el archivo `.json` local una vez confirmada la subida exitosa.
 
 ### Paso 2: Configuración del entorno EC2 y Conexión SSH
-Se ha aprovisionado una instancia EC2 (Ubuntu) con el Security Group configurado para permitir tráfico HTTP en el puerto `8501`. 
-
-**Resolución de incidencias de conectividad SSH (Troubleshooting)**
-Al intentar establecer la conexión SSH con la instancia EC2 mediante el comando `ssh -i labsuser.pem ubuntu@3.80.119.225`, se detectó un error de seguridad relacionado con los permisos del sistema operativo local:
+En el Security Group, se han configurado las reglas de entrada para los puertos `22` (SSH) y `8501` (Streamlit) restringiendo el acceso únicamente a la IP pública del desarrollador (configuración My IP en AWS). Esto bloquea de raíz cualquier intento de conexión de terceros no autorizados.
 
 Se establece la conexión SSH con la instancia. (*Nota: Si experimentas errores de permisos con el archivo `.pem` en Windows, consulta la sección de Resolución de Problemas al final de este documento*).
   
@@ -126,7 +123,7 @@ Incluye las siguientes funcionalidades operativas:
 
 ---
 
-## Resolución de Problemas (Troubleshooting)
+## Resolución de Problemas
 
 ### 1. Error de conexión SSH: "UNPROTECTED PRIVATE KEY FILE!"
 * **Problema:** Al intentar conectar por SSH desde Windows, el cliente rechaza la conexión con el error `Permission denied (publickey)` y advierte que los permisos de `labsuser.pem` están demasiado abiertos. El protocolo SSH exige estrictamente que el archivo de la clave privada solo sea accesible por el propietario.
