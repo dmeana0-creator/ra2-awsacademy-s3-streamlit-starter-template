@@ -8,7 +8,7 @@
 - Grupo: IABD
 - Variante usada (A/B): B
 - Región AWS: us-east-1
-- Bucket S3: iabd03-Tarea-RA2
+- Bucket S3: iabd03-tarea-RA2
 
 ---
 
