@@ -110,7 +110,7 @@ Incluye capturas donde se vea:
 - [x] Captura del log (`tail -n 50 streamlit.log` o similar)
 ![Captura del log](../img/streamlit_log.png)
 
-- [x] URL final: `http://IP_PUBLICA_EC2:8501`, en la captura que he hecho `http://3.80.28.35:8501/`
+- [x] URL final: `http://IP_PUBLICA_EC2:8501`, en la captura que he hecho `http://54.174.66.99:8501/`
 
 **URL:** `http://IP_PUBLICA_EC2:8501`
 
