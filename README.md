@@ -9,7 +9,7 @@ Este repositorio contiene la implementación de un sistema de ingesta y el despl
 
 ## Objetivo del Proyecto
 El proyecto implementa una **arquitectura de datos IoT** orientada a la generación, almacenamiento y consumo:
-1. **Ingesta:** Generación de datos simulados de sensores IoT (JSON) y subida a un bucket S3 privado mediante script.
+1. **Ingesta:** Generación de datos simulados de sensores IoT (JSON) y subida a un bucket S3 privado mediante scripts de Python.
 2. **Despliegue:** Configuración de una instancia EC2 (Ubuntu) para alojar la aplicación web.
 3. **Visualización:** Creación de un Dashboard interactivo con **Streamlit** que consume los datos de S3 de forma segura mediante variables de entorno y muestra gráficas, tablas y mapas.
 
@@ -87,6 +87,7 @@ Una vez dentro de la máquina EC2:
    ```bash
    cd <repo>
    bash scripts/ec2_setup.sh
+   source .venv/bin/activate
    ```
 
 ### Paso 3: Configuración de Variables de Entorno
